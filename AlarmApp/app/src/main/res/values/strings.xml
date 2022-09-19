@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">AlarmApp</string>
+    <string name="menu1">Title</string>
+    <string name="menu2">Date</string>
+    <string name="menu3">Time</string>
+    <string name="menu4">Duration</string>
+    <string name="menu5">Receiver</string>
+    <string name="menu6">Message Text</string>
+    <string name="btn1">저장</string>
+    <string name="btn2">취소</string>
+    <string name="btn3">삭제</string>
+    <string name="checkbox1">30초</string>
+    <string name="checkbox2">1분</string>
+    <string name="checkbox3">3분</string>
+    <string name="checkbox4">5분</string>
+    <string name="title">알람 제목</string>
+    <string name="phone">01012345678</string>
+    <string name="message">보낼 문자 내용</string>
+
+</resources>
