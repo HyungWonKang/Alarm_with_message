@@ -16,5 +16,7 @@
     <string name="title">알람 제목</string>
     <string name="phone">01012345678</string>
     <string name="message">보낼 문자 내용</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

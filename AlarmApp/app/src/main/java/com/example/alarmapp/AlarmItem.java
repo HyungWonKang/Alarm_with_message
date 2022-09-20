@@ -1,7 +1,7 @@
 package com.example.alarmapp;
 
 public class AlarmItem {
-    private int id;
+    public int id;
     private String title;
     private String date;
     private String time;

@@ -37,26 +37,30 @@ public class DBHelper extends SQLiteOpenHelper {
 
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM Alarm ORDER BY id DESC", null);
-        if(cursor.getCount() !=0){
-            // 조회 데이터가 있을 떄 수행
-            while (cursor.moveToNext()) {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
-                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
-                String time = cursor.getString(cursor.getColumnIndexOrThrow("time"));
-                int duration = cursor.getInt(cursor.getColumnIndexOrThrow("duration"));
-                String receiver = cursor.getString(cursor.getColumnIndexOrThrow("receiver"));
-                String message = cursor.getString(cursor.getColumnIndexOrThrow("message"));
+        if(cursor!=null && cursor.getCount() > 0)
+        {
+            if (cursor.moveToFirst())
+            {
+                do {
+                    int id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                    String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                    String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
+                    String time = cursor.getString(cursor.getColumnIndexOrThrow("time"));
+                    int duration = cursor.getInt(cursor.getColumnIndexOrThrow("duration"));
+                    String receiver = cursor.getString(cursor.getColumnIndexOrThrow("receiver"));
+                    String message = cursor.getString(cursor.getColumnIndexOrThrow("message"));
 
-                AlarmItem alarmItem = new AlarmItem(id, title, date, time, duration, receiver, message);
-                alarmItem.setId(id);
-                alarmItem.setTitle(title);
-                alarmItem.setDate(date);
-                alarmItem.setTime(time);
-                alarmItem.setDuration(duration);
-                alarmItem.setReceiver(receiver);
-                alarmItem.setMessage(message);
-                alarmItems.add(alarmItem);
+                    AlarmItem alarmItem = new AlarmItem(id, title, date, time, duration, receiver, message);
+                    alarmItem.setId(id);
+                    alarmItem.setTitle(title);
+                    alarmItem.setDate(date);
+                    alarmItem.setTime(time);
+                    alarmItem.setDuration(duration);
+                    alarmItem.setReceiver(receiver);
+                    alarmItem.setMessage(message);
+                    alarmItems.add(alarmItem);
+
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();
@@ -78,8 +82,11 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     //DELETE문-삭제
-    public void DeleteAlarm(int _id){
+    public void DeleteAlarm(int id){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM Alram WHERE id = '" + _id + "'");
+        String sql = "delete from " + "Alarm" +
+                " where " +
+                "  id = " + id;
+        db.execSQL(sql);
     }
 }
